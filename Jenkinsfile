@@ -52,7 +52,7 @@ pipeline {
       stage('Stop Tests') {
          steps {
             powershell """
-               docker-composer down
+               docker-compose down
             """
          }
       }
