@@ -11,7 +11,7 @@ pipeline {
       stage('Docker Build') {
          steps {
             powershell 'Write-Output "Hello from powershell"'
-            powershell 'docker imapowershellges -a'
+            powershell 'docker images -a'
             powershell """
                cd azure-vote/
                docker images -a
