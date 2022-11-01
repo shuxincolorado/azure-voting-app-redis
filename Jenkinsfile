@@ -25,7 +25,7 @@ pipeline {
       stage('Start test app') {
          steps {
             powershell """
-               #start app line missing!
+               docker compose up -d
                ./scripts/test_continer.ps1
             """
          }
