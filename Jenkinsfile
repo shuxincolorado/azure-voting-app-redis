@@ -21,6 +21,40 @@ pipeline {
             """
          }
       }
+
+      stage('Start test app') {
+         steps {
+            powershell """
+               #start app line missing!
+               ./scripts/test_continer.ps1
+            """
+         }
+
+         post{
+            success{
+               echo "App started successfully :)"
+            }
+
+            failure{
+               echo "App failed to start"
+            }
+         }
+      }
       
+      stage('Run Tests') {
+         steps {
+            powershell """
+               pytest ./tests/test_sample.py
+            """
+         }
+      }
+
+      stage('Stop Tests') {
+         steps {
+            powershell """
+               docker-composer down
+            """
+         }
+      }
    }
 }
